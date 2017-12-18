@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html> 
+	<head> 
+		<meta charset="utf-8"> 
+			<title>留言板 </title> 
+	</head> 
+	<style> 
+		*{ padding:0; } 
+		#box{ height:700px; width:200px; border:1px solid yellowgreen; } 
+	</style> 
+	<script> 
+	window.onload=function(){ 
+	var text= document.getElementById('text');
+	var btn= document.getElementById('btn'); 
+	var box= document.getElementById('box'); 
+	btn.onclick=function(){ 
+		var val = text.value;
+		var newval='<p>'+val+'<p>'; 
+		box.innerHTML= newval+box.innerHTML; 
+		}
+	}
+	</script> 
+<body> 
+	<input type="text" id="text" value="" /> 
+	<input type="button" id="btn" value="提交"/> 
+	<div id="box"></div> 
+</body> 
+</html>
