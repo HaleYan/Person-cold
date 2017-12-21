@@ -1,0 +1,15 @@
+void DFS( MGraph Graph, Vertex V, void (*Visit)(Vertex) )
+{
+  Visited[V] = 1;
+  Visit(V);
+  
+  for(int i=0;i< Graph->Nv;i++)
+  {
+    if(Graph->G[V][i] == 1 && !Visited[i])
+        DFS(Graph,i,Visit);
+  }
+  return;
+}
+/*邻接矩阵存储图的深度优先遍历
+的关键函数。
+*/
