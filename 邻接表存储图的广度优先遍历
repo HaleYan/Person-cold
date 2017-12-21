@@ -1,0 +1,21 @@
+void BFS ( LGraph Graph, Vertex S, void (*Visit)(Vertex) )
+{
+   int i=0,j=0;
+    int queue[1005];
+    queue[j++]=S;
+    (*Visit)(S);
+    Visited[S]=1;
+    PtrToAdjVNode P;
+    while(i!=j){
+        P=Graph->G[queue[i++]].FirstEdge;
+        while(P){
+            Vertex M=P->AdjV;
+            if(!Visited[M]){
+                Visit(M);
+                Visited[M]=1;
+                queue[j++]=M;
+            }
+            P=P->Next;
+        }
+    }
+}
