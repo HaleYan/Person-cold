@@ -1,0 +1,76 @@
+void ShortestDist(LGraph Graph, int dist[], Vertex S )
+{
+    int v,w,min,k;
+    int final[MaxVertexNum];
+    for(v = 0;v < Graph -> Nv;v ++)
+    {
+      final[v] = 0;
+      dist[v] = Graph -> G[S][v];
+    }
+    final[S] = 1;
+    for(v = 0;v < Graph -> Nv;v ++)
+    {
+        min = INFINITY;
+        for(w = 0;w < Graph -> Nv;w ++)
+            if(!final[w] && dist[w] < min){
+              k = w;
+              min = dist[w];
+            }
+        if(min == INFINITY) continue;
+        final[k] = 1;
+        for( w = 0;w < Graph -> Nv;w ++)
+        {
+            if(!final[w] && (min+Graph -> G[k][w]<dist[w]))
+            {
+                  dist[w] = min+Graph -> G[k][w];
+            }
+        }
+    }
+    for( v = 0;v < Graph -> Nv;v ++)
+    {
+        if(v == S)
+          dist[v] = 0;
+        else if(dist[v] == INFINITY)
+          dist [v] = -1;
+          
+    }
+}
+
+
+void ShortestDist( LGraph Graph, int dist[], Vertex S )
+{
+    int v,w,min,k;
+    int final[MaxVertexNum];
+    for(v = 0;v < Graph -> Nv;v ++)
+    {
+      final[v] = 0;
+      dist[v] = Graph -> G[S][v];
+    }
+    dist[S]=0;
+    final[S] = 1;
+    for(v = 1;v < Graph -> Nv;v ++)
+    {
+        min = INFINITY;
+        for(w = 0;w < Graph -> Nv;w ++)
+            if(!final[w] && dist[w] < min){
+              k = w;
+              min = dist[w];
+            }
+        if(min == INFINITY) continue;
+        final[k] = 1;
+        for( w = 0;w < Graph -> Nv;w ++)
+        {
+            if(!final[w] && (min+Graph -> G[k][w]<dist[w]))
+            {
+                  dist[w] = min+Graph -> G[k][w];
+            }
+        }
+    }
+    for( v = 1;v < Graph -> Nv;v ++)
+    {
+        if(v == S)
+          dist[v] = 0;
+        else if(dist[v] == INFINITY)
+          dist [v] = -1;
+    }
+}
