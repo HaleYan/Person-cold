@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include <cstring>
+#include <cstdlib>
+#include<math.h>
+#include<iostream>
+using namespace std;
+int main(){
+	char a[8];
+	int b;
+	cin>>a>>b;
+	int oj=strlen(a);
+	int sum=0;
+	int n[8];
+	/*for(int i=0;i<oj;i++){
+		if(a[i]>='0'&&a[i]<='9') n[i]=a[i]-'0';
+		else if('A'<=a[i]&&a[i]<='F') n[i]=a[i]-'A'+10;
+	}*/
+	/*for(int i=0;i<oj;i++) cout<<n[i]<<" ";//输出中间值； 
+	cout<<endl;*/
+	/*	for(int j=0;j<oj;j++){
+		int admin=1;
+		for(int i=oj-j-1;i>0;i--) admin*=b;
+		sum+=(admin*n[j]);
+		}
+		cout<<sum<<endl;*/
+	for(int i=0;i<oj;i++){
+		if(a[i]>='0'&&a[i]<='9') sum+=(a[i]-'0')*pow(b,oj-i-1);
+		else if('A'<=a[i]&&a[i]<='F') sum+=(a[i]-'A'+10)*pow(b,oj-i-1);
+	}
+	cout<<sum<<endl;
+	return 0;
+}
