@@ -1,0 +1,44 @@
+/*#include<stdio.h>
+#include <cstring>
+#include <cstdlib>
+#include<iostream>
+using namespace std;
+int n,m;  
+int a[105];  //预先设定一个足够大的数组来存放数据 
+int main()  
+{  
+    while(scanf("%d %d",&n,&m)!=0)  
+    {  
+        for(int i=0;i<n;i++) scanf("%d",&a[i]);  
+        m=m%n;  								//元素的总个数对需要移动的位数取余 
+        printf("%d",a[m]);  					
+        for(int i=m+1;i<n;i++) printf(" %d",a[i]);  
+        for(int i=0;i<=m-1;i++) printf(" %d",a[i]);  
+        printf("\n");  
+    }  
+    return 0;  
+} */
+
+#include<stdio.h>
+#include <cstring>
+#include <cstdlib>
+#include<iostream>
+using namespace std;
+int A[105];
+int n,m;
+int main(){
+	while(~scanf("%d %d",&n,&m))  
+    {  
+    	int a[105],b[105];
+        for(int i=0;i<n;i++) scanf("%d",&A[i]);
+        for(int j=0;j<m;j++) a[j]=A[j];
+        /*int i=0;
+        for(int j=m;j<n;j++) {
+          	b[i++]=A[j];
+        }*/
+          for(int i=n-1;i>=m;i--) cout<<A[i]<<" ";
+        for(int i=m-1;i>=0;i--) cout<<a[i]<<" ";
+        cout<<endl;
+    }
+	return 0;
+}
