@@ -1,0 +1,25 @@
+#include<stdio.h>//online
+#include<math.h>
+#include<algorithm>
+#include<string.h>
+#include <stdlib.h>
+#include<iostream>
+#include<queue>
+using namespace std;
+const int MAX =  505;
+int main(){
+	int  n,m,T;
+	 cin >> n >> m >> T;
+	int ju[MAX][MAX];
+	for(int i=0;i<MAX;i++){
+		for(int j=0;j<MAX;j++){
+			cin>>ju[i][j];
+		}
+	}
+	int a,b,c;
+	for(int i=0;i<T;i++){
+		
+		
+	}
+	return 0;
+}
