@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include <cstring>
+#include <cstdlib>
+#include<iostream>
+using namespace std;
+int main(){
+	int n,m,count;
+	char a[8];
+	while(cin>>n>>m){
+		for(int i = 0; n > 0 ; ++i){
+			a[i]=n%m+'0';
+			n=n/m;
+			if(a[i]>'9')
+			  a[i]+=7;
+			  count=i;
+		}
+		for(int i=count;i>=0;i--){
+			cout<<a[i];
+		}	
+	}
+		cout<<endl;
+	return 0;
+}
