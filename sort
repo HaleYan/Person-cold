@@ -1,0 +1,61 @@
+/*#include<stdio.h>
+#include<iostream>
+using namespace std;
+#include<algorithm>
+#define N 100005
+int A[N];
+int main(){
+	int n;
+	scanf("%d",&n);
+	for(int i=0;i<n;i++)
+		scanf("%d",&A[i]);
+	for(int i=0;i<n-1;i++)
+	{	if(A[i]==10001) continue; 
+		for(int j=i+1;j<n;j++)
+		{
+		if(A[j]==10001)
+			continue;
+			if(A[i]==A[j])
+			A[j]=10001;
+		}
+	}
+		sort(A,A+n);
+		for(int i=0;i<n;i++) 
+			if(A[i]!=10001)
+				printf("%d ",A[i]);
+			printf("\n");
+	return 0;
+} */
+#include<iostream>
+#include<stdio.h>
+using namespace std;
+void Qsort(int a[], int low, int high)
+{
+    if(low >= high)	return;
+    int first = low;
+    int last = high;
+    int key = a[first];/*用字表的第一个记录作为枢轴*/
+ 	while(first < last){
+        while(first < last && a[last] >= key)	--last;
+        a[first] = a[last];/*将比第一个小的移到低端*/
+ 		while(first < last && a[first] <= key)	++first;
+        a[last] = a[first];    
+/*将比第一个大的移到高端*/
+    }
+    a[first] = key;/*枢轴记录到位*/
+    Qsort(a, low, first-1);
+    Qsort(a, first+1, high);
+}
+int main()
+{
+	int n;
+	cin>>n;
+	int a[n];
+	for(int i=0;i<n;i++)	cin>>a[i];
+	Qsort(a,0,n-1);
+	cout<<a[0]<<" "; 
+	for(int i=1;i<n;i++)
+		if(a[i]!=a[i-1])
+			cout<<a[i]<<" ";
+	return 0;
+}
