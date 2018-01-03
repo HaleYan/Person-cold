@@ -1,0 +1,42 @@
+#include <iostream>
+
+#define MAX 100
+using namespace std;
+void makenext(string s,int next[]) {
+    int length = s.size();
+    int i = 0, j = -1;
+    next[0] = -1;
+    while (i < length) {
+        if (j == -1 || s[i] == s[j]) {
+            i++;
+            j++;
+            next[i] = j;
+        } else j = next[j];
+    }
+}
+
+int kmp(string s,string p,int next[]) {
+    int p_length = p.size(), s_length = s.size();
+    int i = 0, j = 0;
+    makenext(p, next);
+    while (i < s_length && j < p_length) {
+        if (p[j] == s[i] || j == -1) {
+            i++;
+            j++;
+        } else j = next[j];
+    }
+    if (j == p_length) {
+        return i-j+1;
+    } else return -1;
+}
+
+int main() {
+    string s, p;
+    int next[MAX];
+    cin >> s >> p;
+    int kmps=kmp(s, p, next);
+    if (kmps==-1) {
+        cout << "匹配失败！" << endl;
+    } else cout << kmps << endl;
+    return 0;
+}
