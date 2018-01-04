@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+#define MAXN 20
+
+int Delete( int A[], int L, int minA, int maxA );
+
+int main()
+{
+    int A[MAXN], L, minA, maxA, i;
+
+    scanf("%d", &L);
+    for (i=0; i<L; i++) scanf("%d", &A[i]);
+    scanf("%d %d", &minA, &maxA);
+    L = Delete(A, L, minA, maxA);
+    for (i=0; i<L; i++) printf("%d ", A[i]);
+    printf("\n");
+	return 0;
+}
+int Delete( int A[], int L, int minA, int maxA ){
+	/*int i=0,*p,e,*q;
+	p=A;
+	for(i;i<L;i++){
+		if(minA<A[i]&&A[i]<maxA){
+			p=&A[i];
+			e=*p;
+			q=&A[L-1]-1;
+			for(++p;p<=q;++p)
+			*(p-1)=*p;
+			--L;
+		}
+	}
+	return L;*/
+	int i,j=0;
+    int B[MAXN];
+    for(i=0;i<L;i++)
+    	if(A[i]<=minA || A[i]>=maxA) B[j++]=A[i];
+    for(int i=0;i<j;i++) A[i]=B[i];
+    L=j;
+    return L;
+}
