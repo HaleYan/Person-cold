@@ -1,0 +1,160 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef int ElementType;
+typedef struct Node *PtrToNode;
+struct Node {
+    ElementType Data;
+    PtrToNode   Next;
+};
+typedef PtrToNode List;
+List Read(); 
+void Print( List L ); 
+List Merge( List L1, List L2 );
+int main()
+{
+    List L1, L2, L;
+    L1 = Read();
+    L2 = Read();
+    L = Merge(L1, L2);
+    Print(L);
+    Print(L1);
+    Print(L2);
+    return 0;
+}
+List Read(){
+	int n;
+	scanf("%d",&n);
+	List L,p;
+	L=(List)malloc(sizeof(Node));
+	L->Next=NULL;
+	for(int i=0;i<n;i++){
+		p=(List)malloc(sizeof(Node));
+		scanf("%d",&p->Data);
+		p->Next=L->Next;
+		L->Next=p;
+	}
+	return L;
+} 
+List Merge( List L1, List L2 ){
+	List L,pa,pb,qa,qb,pc;
+	pa=L1;
+	pb=L2;
+	qa=pa;
+	qb=pb;
+	pa=pa->Next; 
+	pb=pb->Next;
+	L=pc=L1;
+	while(pa&&pb){
+		if(pa->Data<=pb->Data){
+			pc->Next=pa;
+			pc=pa;
+			pa=pa->Next;
+		}
+		else{
+			pc->Next=pb;
+			pc=pb;
+			pb=pb->Next;
+		}
+	}
+	pc->Next=pa?pa:pb;
+	free(L1);
+	free(L2);
+	return L;
+	
+}
+void Print( List L ){
+	if(L==NULL) printf("NULL\n");
+	else{
+	List p;
+	p=L->Next;
+	while(p!=NULL)
+	{
+		printf("%d ",p->Data);
+		p=p->Next;
+	}
+	printf("\n");
+}
+ 
+}
+/* 
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef int ElementType;
+typedef struct Node *PtrToNode;
+struct Node {
+    ElementType Data;
+    PtrToNode   Next;
+};
+typedef PtrToNode List;
+
+List Read();
+void Print( List L );
+
+List Merge( List L1, List L2 );
+
+int main()
+{
+    List L1, L2, L;
+    L1 = Read();
+    L2 = Read();
+    L = Merge(L1, L2);
+    Print(L);
+    Print(L1);
+    Print(L2);
+    return 0;
+}
+List Read()
+{
+	int i,n;
+	scanf("%d",&n);
+	List L=(PtrToNode)malloc(sizeof(ElementType));
+	L->Next=NULL;
+	List Q=L;
+	for(i=n;i>0;--i)
+	{
+		List p=(PtrToNode)malloc(sizeof(ElementType));
+		scanf("%d",&p->Data);
+		p->Next=Q->Next;
+		Q->Next=p;
+		Q=p;
+	}
+	return L;
+}
+void Print(List L)
+{
+	List p;
+	p=L->Next;
+	while(p!=NULL)
+	{
+		printf("%d",p->Data);
+		p=p->Next;
+	}
+}
+List Merge( List L1, List L2 )
+{
+	List L=(PtrToNode)malloc(sizeof(ElementType));
+	L->Next=NULL;
+	List pa=L1->Next;
+	List pb=L2->Next;
+	List pc=L;
+	while(pa&&pb)
+	{
+		if(pa->Data<=pb->Data)
+		{
+			pc->Next=pa;
+			pc=pa;
+			pa=pa->Next;
+		}
+		else
+		{
+			pc->Next=pb;
+			pc=pb;
+			pb=pb->Next;
+		}
+	}
+	pc->Next=pa?pa:pb;
+	free(L1);
+	free(L2);
+	return L;
+}*/
