@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<iostream>
+
+#include<cmath>
+
+using namespace std;
+
+int n,ans;
+
+//设完成有n个盘子的汉诺塔的最短步数为 Hn，则易知 H1=1；
+
+// 而对于每个 Hn而言，都需要先处理Hn-1
+
+//即要先把上面的 n-1个 移到 B柱上，再把最后一个移到 C柱上，最后再把上面的 n-1个移到 C柱上 
+
+//故有递推公式：Hn=2*(Hn-1)+1,且 H1=1 由数列的知识可知 Hn=（2^n）-1 
+
+void hanoi(int n,char a,char b,char c)// 把 n个盘子从 A移到 C 
+
+{     
+
+    if(n==1)
+
+    {
+
+        cout<<n<<" from "<<a<<" to "<<c<<endl;// H1的情况 
+
+        return ;
+
+    }
+
+    else
+
+    {
+
+        hanoi(n-1,a,c,b); // 把上面 n-1个盘子从 A移到 B         
+
+        cout<<n<<" from "<<a<<" to "<<c<<endl;// 把第 n个盘子从 A移到 C 
+
+        hanoi(n-1,b,a,c);// 再把上面 n-1个盘子从 B移到 C 
+
+    }
+
+}
+
+int main()
+
+{
+
+    scanf("%d",&n);
+
+    int ans=pow(2,n)-1; //步数=(2^n)-1   
+
+    printf("%d\n",ans);
+
+    hanoi(n,'A','B','C');
+
+}
+
